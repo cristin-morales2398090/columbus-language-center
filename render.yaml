@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: columbus-language-center
+    runtime: python
+    plan: free            # cámbialo a "starter" si agregas disco persistente (ver README)
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false       # Render te pedirá escribirla al crear el servicio

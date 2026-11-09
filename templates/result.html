@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Tu resultado · {{ site.brand }}{% endblock %}
+{% block content %}
+<section class="narrow result">
+  <p class="note">{{ r.name }}, tu nivel de inglés es</p>
+  <div class="big-level">{{ r.level }}</div>
+  <p class="lead">{{ info }}</p>
+  <p><strong>{{ r.score }} de {{ r.total }}</strong> respuestas correctas.</p>
+  <ul class="breakdown">
+    {% for lv, v in per.items() %}
+    <li><b>{{ lv }}</b><div class="meter"><i style="width: {{ (v[0] / v[1] * 100) | round | int }}%"></i></div><span>{{ v[0] }}/{{ v[1] }}</span></li>
+    {% endfor %}
+  </ul>
+  <div class="cta-row">
+    <a class="btn" href="https://wa.me/{{ site.whatsapp }}?text=Hola%20Columbus,%20mi%20nivel%20en%20el%20examen%20fue%20{{ r.level }}.%20Quiero%20info%20de%20los%20cursos">Hablar con un asesor</a>
+    <a class="btn ghost" href="{{ url_for('index') }}">Volver al inicio</a>
+  </div>
+</section>
+{% endblock %}

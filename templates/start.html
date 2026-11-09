@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Examen de nivel · {{ site.brand }}{% endblock %}
+{% block content %}
+<section class="narrow">
+  <h1>Examen de nivel</h1>
+  <p>Responde 20 preguntas de opción múltiple. Si no sabes una, elige tu mejor intento. Al final verás tu nivel.</p>
+  <form method="post" class="card">
+    <label>Nombre completo<input name="name" value="{{ name }}" required autocomplete="name"></label>
+    <label>Correo electrónico<input type="email" name="email" value="{{ email }}" required autocomplete="email"></label>
+    <label>WhatsApp (opcional)<input name="phone" value="{{ phone }}" autocomplete="tel"></label>
+    <button class="btn">Empezar el examen</button>
+  </form>
+</section>
+{% endblock %}

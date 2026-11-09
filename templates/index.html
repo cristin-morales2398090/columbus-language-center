@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="pill rise" style="--d:0s"><i></i>Clases presenciales · Examen de nivel gratis</p>
+      <h1><span class="line"><span style="--l:1">Aprende inglés cara a cara,</span></span><span class="line"><span style="--l:2">con un plan hecho para tu nivel.</span></span></h1>
+      <p class="sub rise" style="--d:.55s">Clases presenciales en {{ site.brand }}. Empieza con un examen de nivel gratuito y llega a tu primera clase con un camino claro, sin adivinar por dónde empezar.</p>
+      <div class="cta-row rise" style="--d:.7s">
+        <a class="btn lg" href="{{ url_for('start_test') }}">Hacer el examen de nivel</a>
+        <a class="btn lg outline" href="#reserva">Reservar una clase</a>
+      </div>
+    </div>
+    <div class="hero-visual hero-stage" aria-label="Ilustración de aprendizaje y progreso">
+      <div class="stage-orbit orbit-one"></div><div class="stage-orbit orbit-two"></div>
+      <div class="stage-globe"><img class="stage-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Globo académico de Columbus Language Center"></div>
+      <div class="stage-note note-top"><span class="note-icon">✦</span><span><b>Speak with confidence</b><small>Un paso a la vez</small></span></div>
+      <div class="stage-level"><small>YOUR ENGLISH JOURNEY</small><strong>A1 <i>→</i> C1</strong><span>Tu progreso empieza aquí</span><div class="level-track"><i></i></div></div>
+      <div class="stage-stamp">LEARN<br><b>GROW</b><br>CONNECT</div>
+      <span class="stage-spark spark-a">✳</span><span class="stage-spark spark-b">✦</span>
+    </div>
+  </div>
+  <ul class="facts"><li><b data-count="20">20</b>preguntas de diagnóstico</li><li><b data-count="10">10</b>minutos de examen</li><li><b>A1–C1</b>todos los niveles</li><li><b data-count="100" data-suffix="%">100%</b>clases presenciales</li></ul>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {% for g in range(2) %}<div class="group">
+      {% for p in ['Good morning!', 'Nice to meet you', 'How’s it going?', 'Could you repeat that, please?', 'I’d like to practice', 'See you tomorrow', 'Let’s get started'] %}<span>{{ p }}</span><em></em>{% endfor %}
+    </div>{% endfor %}
+  </div>
+</div>
+
+<section class="intro-band" aria-label="La experiencia Columbus">
+  <div class="intro-inner">
+    <div class="intro-kicker"><span></span> MORE THAN LANGUAGE. A NEW WAY FORWARD.</div>
+    <div class="intro-copy"><p>El siguiente paso de tu historia <em>también se habla en inglés.</em></p><span>Aprende con propósito, practica en persona y convierte cada clase en una oportunidad para avanzar.</span></div>
+    <a href="#ruta" class="intro-link">Descubre tu ruta <b>↗</b></a>
+  </div>
+</section>
+
+<section class="sec light" id="presencial">
+  <div class="wrap">
+    <div class="split-head">
+      <h2>El inglés se aprende mejor frente a frente</h2>
+      <p class="lead-in">Una pantalla puede explicar, pero hablar con una persona real, en el mismo salón, es lo que te hace perder el miedo.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit spot"><svg class="ico" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><h3>Corrección en el momento</h3><p>Tu pronunciación y tu gramática se ajustan al instante, con ejemplos, gestos y repetición.</p></div>
+      <div class="benefit spot"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.3L3 20l1.3-5A8.4 8.4 0 1 1 21 11.5z"/></svg><h3>Conversación real</h3><p>Practicas hablar con alguien frente a ti, sin pantallas, sin retrasos y sin micrófonos apagados.</p></div>
+      <div class="benefit spot"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><h3>Constancia</h3><p>Un horario fijo y un lugar físico te ayudan a mantener el hábito y a no abandonar a la mitad.</p></div>
+      <div class="benefit spot"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><h3>Atención personal</h3><p>Cada clase se adapta a lo que pasa en el salón, no a una grabación.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="ruta">
+  <div class="wrap">
+    <h2>Tu ruta, paso a paso</h2>
+    <p class="lead-in">Desde el primer clic hasta tu progreso en el salón, siempre sabes dónde estás.</p>
+    <ol class="route reveal">
+      <li><span class="dot">1</span><h3>Examen de nivel</h3><p>Diez minutos en línea, desde donde estés. Es gratis.</p></li>
+      <li><span class="dot">2</span><h3>Tu diagnóstico</h3><p>Ves tu nivel y tu puntaje en cada etapa, al instante.</p></li>
+      <li><span class="dot">3</span><h3>Primera clase</h3><p>Conoces a tu profesor en persona y arrancan desde lo que necesitas.</p></li>
+      <li><span class="dot">4</span><h3>Avance constante</h3><p>Clase a clase, con seguimiento de tu progreso hasta el siguiente nivel.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec light" id="niveles">
+  <div class="wrap">
+    <h2>La escala que usa el mundo</h2>
+    <p class="lead-in">El MCER es el estándar de Cambridge, IELTS y la mayoría de universidades. Así se ve cada peldaño.</p>
+    <ol class="ladder reveal">
+      {% for lv, txt in level_desc %}
+      {% set parts = txt.split(': ', 1) %}
+      <li style="--i:{{ loop.index0 }}"><b>{{ lv }}</b><h3>{{ parts[0] }}</h3><p>{{ parts[1] }}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sec white" id="cursos">
+  <div class="wrap">
+    <h2>Programas presenciales</h2>
+    <p class="lead-in">Cada curso está pensado para una etapa concreta del aprendizaje.</p>
+    <div class="courses">
+      {% for name, lvl, desc in courses %}
+      <article class="course spot"><div class="course-top"><span class="tag">{{ lvl }}</span><span class="mode">Presencial</span></div><h3>{{ name }}</h3><p>{{ desc }}</p><a href="{{ url_for('start_test') }}">Descubre si es para ti</a></article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec goals-section" id="objetivos">
+  <div class="wrap">
+    <div class="goals-heading">
+      <div>
+        <span class="eyebrow"><i></i> ENGLISH FOR YOUR NEXT CHAPTER</span>
+        <h2>Aprende inglés para lo que viene.</h2>
+      </div>
+      <p class="lead-in">No todos empiezan por la misma razón. Identifica tu objetivo y construye una ruta de aprendizaje que tenga sentido para ti.</p>
+    </div>
+    <div class="goal-grid">
+      <article class="goal-card goal-travel">
+        <div class="goal-art" aria-hidden="true"><span class="goal-orbit"></span><span class="goal-symbol">↗</span><span class="goal-code">01 / EXPLORE</span></div>
+        <div class="goal-content"><span class="goal-label">PARA EL DÍA A DÍA</span><h3>Muévete con confianza</h3><p>Practica expresiones y conversaciones útiles para desenvolverte en situaciones cotidianas y al viajar.</p><a href="{{ url_for('start_test') }}">Encuentra tu nivel <b>↗</b></a></div>
+      </article>
+      <article class="goal-card goal-work">
+        <div class="goal-art" aria-hidden="true"><span class="goal-orbit"></span><span class="goal-symbol">⌘</span><span class="goal-code">02 / GROW</span></div>
+        <div class="goal-content"><span class="goal-label">PARA TU CARRERA</span><h3>Abre nuevas oportunidades</h3><p>Fortalece tu comunicación para entrevistas, reuniones, presentaciones y entornos profesionales.</p><a href="#cursos">Explora los programas <b>↗</b></a></div>
+      </article>
+      <article class="goal-card goal-connect">
+        <div class="goal-art" aria-hidden="true"><span class="goal-orbit"></span><span class="goal-symbol">✳</span><span class="goal-code">03 / CONNECT</span></div>
+        <div class="goal-content"><span class="goal-label">PARA CONECTAR</span><h3>Haz que tu voz se escuche</h3><p>Gana práctica, amplía tu vocabulario y desarrolla seguridad para participar en conversaciones reales.</p><a href="https://wa.me/{{ site.whatsapp }}?text=Hola%20Columbus%2C%20quiero%20informaci%C3%B3n%20para%20mejorar%20mi%20conversaci%C3%B3n%20en%20ingl%C3%A9s." target="_blank" rel="noopener noreferrer">Conversemos <b>↗</b></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="next-step-band">
+  <div class="next-step-inner">
+    <div><span class="eyebrow"><i></i> YOUR JOURNEY STARTS HERE</span><h2>Tu inglés no tiene que esperar al momento perfecto.</h2><p>Haz el examen gratuito, conoce tu punto de partida y da el primer paso con Columbus.</p></div>
+    <a class="btn lg" href="{{ url_for('start_test') }}">Comenzar mi examen <span aria-hidden="true">↗</span></a>
+    <span class="next-step-watermark" aria-hidden="true">C</span>
+  </div>
+</section>
+
+<section class="sec dark" id="profe">
+  <div class="wrap about">
+    <div class="avatar"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo de {{ site.brand }}"></div>
+    <div>
+      <h2>Conoce {{ site.brand }}</h2>
+      <p>Un centro de idiomas enfocado en que hables inglés con seguridad. Aquí puedes contar la trayectoria del equipo, certificaciones (por ejemplo TKT, CELTA o IELTS), años de experiencia y la metodología.</p>
+      <p>Las clases combinan conversación, gramática aplicada y seguimiento del progreso de cada estudiante, siempre en persona.</p>
+      <a class="btn" href="https://wa.me/{{ site.whatsapp }}">Escríbenos por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec light" id="faq">
+  <div class="wrap narrow-wrap">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Las clases son presenciales?</summary><p>Sí, todas las clases son presenciales en {{ site.brand }}. El examen de nivel sí lo haces en línea, desde donde estés.</p></details>
+    <details><summary>¿El examen de nivel tiene costo?</summary><p>No. Es gratis y no necesitas crear una cuenta, solo tu nombre y correo.</p></details>
+    <details><summary>¿Es un certificado oficial?</summary><p>No. Es una evaluación orientativa para ubicarte y planear tus clases. Para un certificado oficial se presentan exámenes como Cambridge, IELTS o TOEFL.</p></details>
+    <details><summary>¿Qué pasa si no sé nada de inglés?</summary><p>Perfecto, puedes hacer el examen igual. Si quedas en Pre-A1, empezamos desde cero.</p></details>
+    <details><summary>¿Cómo reservo mi primera clase?</summary><p>Déjanos tus datos en el formulario de más abajo o escríbenos por WhatsApp, y te confirmamos horarios disponibles.</p></details>
+  </div>
+</section>
+
+<section class="sec dark" id="reserva">
+  <div class="wrap reserve">
+    <div>
+      <h2>Reserva tu primera clase</h2>
+      <p class="lead-in">Cuéntanos cuándo puedes y te confirmamos por WhatsApp.</p>
+      <dl class="info">
+        <div><dt>Sede</dt><dd>{{ site.address }}</dd></div>
+        <div><dt>Horarios</dt><dd>{{ site.schedule }}</dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/{{ site.whatsapp }}">Escribir ahora</a></dd></div>
+      </dl>
+      {% if site.map_embed %}<iframe class="map" src="{{ site.map_embed }}" loading="lazy" title="Ubicación de la sede"></iframe>{% endif %}
+    </div>
+    <form method="post" action="{{ url_for('book') }}" class="glass-form">
+      <label>Nombre<input name="name" required autocomplete="name"></label>
+      <label>WhatsApp<input name="phone" type="tel" required autocomplete="tel" placeholder="Ej: 300 000 0000"></label>
+      <label>Horario preferido
+        <select name="schedule"><option>Mañana</option><option>Tarde</option><option>Noche</option><option>Fin de semana</option></select>
+      </label>
+      <label>Mensaje (opcional)<textarea name="message" rows="3" placeholder="Cuéntanos tu objetivo con el inglés"></textarea></label>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn lg">Solicitar clase</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
