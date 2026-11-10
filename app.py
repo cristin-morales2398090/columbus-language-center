@@ -15,10 +15,11 @@ os.makedirs(os.path.dirname(os.path.abspath(DB)), exist_ok=True)
 SITE = {  # Datos del negocio
     "teacher": "Columbus Language Center",
     "brand": "Columbus Language Center",
-    "address": "Escribe aquí la dirección de la sede",
+    "address": "349 Hamilton Ave., Trenton, NJ",
     "schedule": "Mañana, tarde y noche · horarios a convenir",
-    "map_embed": "",  # opcional: pega aquí la URL de "Insertar un mapa" de Google Maps
+    "map_embed": "https://www.google.com/maps?q=349+Hamilton+Ave,+Trenton,+NJ&output=embed",
     "whatsapp": "16096433272",
+    "phone": "609-643-3272",
     "email": "profe@example.com",
 }
 

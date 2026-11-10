@@ -11,14 +11,18 @@
         <a class="btn lg outline" href="#reserva">Reservar una clase</a>
       </div>
     </div>
-    <div class="hero-visual hero-stage" aria-label="Ilustración de aprendizaje y progreso">
-      <div class="stage-orbit orbit-one"></div><div class="stage-orbit orbit-two"></div>
-      <div class="stage-globe"><img class="stage-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Globo académico de Columbus Language Center"></div>
-      <div class="stage-note note-top"><span class="note-icon">✦</span><span><b>Speak with confidence</b><small>Un paso a la vez</small></span></div>
-      <div class="stage-level"><small>YOUR ENGLISH JOURNEY</small><strong>A1 <i>→</i> C1</strong><span>Tu progreso empieza aquí</span><div class="level-track"><i></i></div></div>
-      <div class="stage-stamp">LEARN<br><b>GROW</b><br>CONNECT</div>
-      <span class="stage-spark spark-a">✳</span><span class="stage-spark spark-b">✦</span>
-    </div>
+    <figure class="hero-photo rise" style="--d:.4s">
+      <div class="ph-slides" role="group" aria-roledescription="carrusel" aria-label="Fotos de las clases en Columbus">
+        <img class="is-on" src="{{ url_for('static', filename='img/clase-hero.webp') }}" alt="Estudiantes y profesora en una clase presencial en Columbus Language Center" width="1200" height="675" fetchpriority="high">
+        <img src="{{ url_for('static', filename='img/clase-mesa.webp') }}" alt="Estudiantes trabajando con sus libros en el salón" width="900" height="675">
+        <img src="{{ url_for('static', filename='img/clase-pizarra.webp') }}" alt="Grupo pequeño practicando en una mesa frente a la pizarra" width="900" height="675">
+        <img src="{{ url_for('static', filename='img/comunidad.webp') }}" alt="Estudiantes compartiendo una comida durante la clase" width="1000" height="750">
+      </div>
+      <div class="ph-dots"></div>
+      <span class="ph-badge"><img src="{{ url_for('static', filename='logo.png') }}" alt="" width="58" height="43"></span>
+      <figcaption class="ph-chip chip-a"><b>Niños, jóvenes y adultos</b><small>Del nivel básico al avanzado</small></figcaption>
+      <span class="ph-chip chip-b"><b>Desde 2020</b><small>Trenton, NJ</small></span>
+    </figure>
   </div>
   <ul class="facts"><li><b data-count="20">20</b>preguntas de diagnóstico</li><li><b data-count="10">10</b>minutos de examen</li><li><b>A1–C1</b>todos los niveles</li><li><b data-count="100" data-suffix="%">100%</b>clases presenciales</li></ul>
 </section>
@@ -54,6 +58,18 @@
   </div>
 </section>
 
+<section class="sec white" id="vida">
+  <div class="wrap">
+    <h2>Así se vive Columbus</h2>
+    <p class="lead-in">Un salón cercano donde se practica, se comparte y se celebra cada avance.</p>
+    <div class="bento">
+      <figure class="b-big"><img data-zoom src="{{ url_for('static', filename='img/clase-pizarra.webp') }}" alt="Grupo pequeño practicando en una mesa frente a la pizarra" width="900" height="675" loading="lazy"><figcaption>Grupos pequeños, atención real</figcaption></figure>
+      <figure class="b-tall"><img data-zoom src="{{ url_for('static', filename='img/navidad.webp') }}" alt="Árbol de Navidad y mural de bienvenida en la sede de Columbus" width="700" height="1356" loading="lazy"><figcaption>Navidad en Columbus</figcaption></figure>
+      <figure class="b-wide"><img data-zoom src="{{ url_for('static', filename='img/felicitaciones.webp') }}" alt="Felicitaciones a los estudiantes de Columbus Language Center" width="1200" height="900" loading="lazy"><figcaption>Celebramos el esfuerzo de cada estudiante</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section class="sec dark" id="ruta">
   <div class="wrap">
     <h2>Tu ruta, paso a paso</h2>
@@ -64,6 +80,10 @@
       <li><span class="dot">3</span><h3>Primera clase</h3><p>Conoces a tu profesor en persona y arrancan desde lo que necesitas.</p></li>
       <li><span class="dot">4</span><h3>Avance constante</h3><p>Clase a clase, con seguimiento de tu progreso hasta el siguiente nivel.</p></li>
     </ol>
+    <figure class="cert">
+      <img data-zoom src="{{ url_for('static', filename='img/certificado.webp') }}" alt="Ejemplo de certificado de finalización de Columbus Language Center" width="1100" height="733" loading="lazy">
+      <figcaption><b>Al terminar cada nivel recibes tu certificado</b><span>Certificado de finalización emitido por Columbus (ejemplo)</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -154,8 +174,10 @@
     <div>
       <h2>Reserva tu primera clase</h2>
       <p class="lead-in">Cuéntanos cuándo puedes y te confirmamos por WhatsApp.</p>
+      <figure class="facade"><img data-zoom src="{{ url_for('static', filename='img/fachada.webp') }}" alt="Fachada de Columbus Language Center en Hamilton Ave., Trenton" width="1200" height="900" loading="lazy"></figure>
       <dl class="info">
-        <div><dt>Sede</dt><dd>{{ site.address }}</dd></div>
+        <div><dt>Sede</dt><dd>{{ site.address }} · <a href="https://www.google.com/maps/search/?api=1&query={{ site.address|urlencode }}" target="_blank" rel="noopener noreferrer">Cómo llegar</a></dd></div>
+        <div><dt>Teléfono</dt><dd><a href="tel:+{{ site.whatsapp }}">{{ site.phone }}</a></dd></div>
         <div><dt>Horarios</dt><dd>{{ site.schedule }}</dd></div>
         <div><dt>WhatsApp</dt><dd><a href="https://wa.me/{{ site.whatsapp }}">Escribir ahora</a></dd></div>
       </dl>
@@ -173,4 +195,5 @@
     </form>
   </div>
 </section>
+<dialog id="lb" aria-label="Foto ampliada"><button type="button" aria-label="Cerrar">×</button><img alt=""><p></p></dialog>
 {% endblock %}

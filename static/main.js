@@ -70,4 +70,29 @@
   const nav = document.querySelector('.nav');
   const f = () => nav.classList.toggle('scrolled', scrollY > 24);
   f(); addEventListener('scroll', f, { passive: true });
+  // Visor de fotos (lightbox)
+  const lb = document.getElementById('lb');
+  if (lb) {
+    const li = lb.querySelector('img'), cap = lb.querySelector('p');
+    document.querySelectorAll('[data-zoom]').forEach(img => {
+      img.tabIndex = 0; img.setAttribute('role', 'button');
+      const open = () => { li.src = img.currentSrc || img.src; li.alt = img.alt;
+        cap.textContent = (img.closest('figure')?.querySelector('figcaption')?.textContent) || ''; lb.showModal(); };
+      img.addEventListener('click', open);
+      img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    });
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('button')) lb.close(); });
+  }
+  // Hero: fotos que rotan cada 5 s (pausa al pasar el mouse; sin rotar si prefiere menos movimiento)
+  const slides = [...document.querySelectorAll('.ph-slides img')], dots = document.querySelector('.ph-dots'), box = document.querySelector('.hero-photo');
+  if (slides.length > 1 && dots && box) {
+    let cur = 0, timer;
+    const go = k => { cur = k; slides.forEach((s, j) => s.classList.toggle('is-on', j === k)); btns.forEach((b, j) => b.classList.toggle('on', j === k)); };
+    const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => go((cur + 1) % slides.length), 5000); };
+    const btns = slides.map((_, k) => { const b = document.createElement('button'); b.type = 'button';
+      b.setAttribute('aria-label', 'Ver foto ' + (k + 1)); b.onclick = () => { go(k); play(); }; dots.appendChild(b); return b; });
+    go(0); play();
+    box.addEventListener('pointerenter', () => clearInterval(timer)); box.addEventListener('pointerleave', play);
+    document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : play());
+  }
 })();
