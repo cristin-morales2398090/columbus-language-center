@@ -4,7 +4,7 @@
 <section class="narrow">
   <div class="progress" role="progressbar" aria-label="Progreso del examen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="bar"></div></div>
   <p id="count" class="note" aria-live="polite"></p>
-  <form id="quiz" method="post" action="{{ url_for('submit_test') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <form id="quiz" method="post" action="{{ url_for('submit_test') }}">
     {% for q in questions %}
     <fieldset class="q" hidden>
       <legend>{{ q.text }}</legend>

@@ -1,7 +1,5 @@
 # Banco de preguntas: (nivel, enunciado, opciones, índice correcto)
-# El nivel debe ser uno de los nombres de LEVELS (ej. "Level 1", "Grammar & Writing").
-LEVELS = ["Level 1", "Level 2", "Grammar & Writing", "Level 3", "Level 4"]  # de menor a mayor
-START_LEVEL = "Pre-Level 1"  # resultado cuando no se aprueba el primer nivel
+LEVELS = ["Level 1", "Level 2", "Grammar & Writing", "Level 3", "Level 4"]
 PASS_RATIO = 0.75  # % mínimo para "aprobar" un nivel
 
 RAW = [
@@ -39,7 +37,7 @@ def grade(answers):
         per[q["level"]][1] += 1
         if answers.get(q["id"]) == q["answer"]:
             per[q["level"]][0] += 1
-    level = START_LEVEL
+    level = "Pre-Level 1"
     for lv in LEVELS:  # el nivel es el último aprobado sin saltos
         ok, n = per[lv]
         if n and ok / n >= PASS_RATIO:

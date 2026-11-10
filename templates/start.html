@@ -4,7 +4,7 @@
 <section class="narrow">
   <h1>Examen de nivel</h1>
   <p>Responde 20 preguntas de opción múltiple. Si no sabes una, elige tu mejor intento. Al final verás tu nivel.</p>
-  <form method="post" class="card"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <form method="post" class="card">
     <label>Nombre completo<input name="name" value="{{ name }}" required autocomplete="name"></label>
     <label>Correo electrónico<input type="email" name="email" value="{{ email }}" required autocomplete="email"></label>
     <label>WhatsApp (opcional)<input name="phone" value="{{ phone }}" autocomplete="tel"></label>

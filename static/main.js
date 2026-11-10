@@ -29,12 +29,17 @@
     el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
     el.style.setProperty('--my', (e.clientY - r.top) + 'px');
   }));
-  // Avisos: se cierran solos a los 8 s o al tocarlos
-  document.querySelectorAll('.flash').forEach(el => {
-    el.setAttribute('role', 'status');
-    setTimeout(() => el.classList.add('flash-out'), 8000);
-    el.addEventListener('click', () => el.classList.add('flash-out'));
-  });
+  // Inclinación 3D suave de la tarjeta del hero
+  const card = document.querySelector('.sample'), hero = document.querySelector('.hero');
+  if (card && hero && !reduce && matchMedia('(hover:hover)').matches) {
+    hero.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const y = (e.clientY - (r.top + r.height / 2)) / r.height;
+      card.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg)`;
+    });
+    hero.addEventListener('pointerleave', () => card.style.transform = '');
+  }
   // Menú accesible para móviles
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('#main-nav');
