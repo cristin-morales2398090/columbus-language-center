@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Tu resultado · {{ site.brand }}{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
 <section class="narrow result">
   <p class="note">{{ r.name }}, tu nivel de inglés es</p>
-  <div class="big-level">{{ r.level }}</div>
+  {% set is_num = r.level.startswith('Level ') %}
+  <div class="big-level{{ ' is-num' if is_num }}" aria-label="{{ r.level }}">{% if is_num %}<small>Level</small><span>{{ r.level[6:] }}</span>{% else %}<span class="txt">{{ r.level }}</span>{% endif %}</div>
   <p class="lead">{{ info }}</p>
   <p><strong>{{ r.score }} de {{ r.total }}</strong> respuestas correctas.</p>
   <ul class="breakdown">

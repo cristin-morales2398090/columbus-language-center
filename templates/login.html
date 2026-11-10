@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
 <section class="narrow">
   <h1>Acceso del equipo</h1>
-  <form method="post" class="card">
+  <form method="post" class="card"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <label>Contraseña<input type="password" name="password" required autofocus></label>
     <button class="btn">Entrar</button>
   </form>

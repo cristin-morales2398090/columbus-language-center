@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% block head %}<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "EducationalOrganization", "name": site.brand,
+  "url": request.url_root, "telephone": "+" + site.whatsapp,
+  "logo": url_for("static", filename="logo.png", _external=True),
+  "address": {"@type": "PostalAddress", "streetAddress": site.street, "addressLocality": site.city,
+              "addressRegion": site.region, "addressCountry": "US"}
+}|tojson }}</script>{% endblock %}
 {% block content %}
 <section class="hero">
   <div class="hero-in">
@@ -19,12 +26,12 @@
         <img src="{{ url_for('static', filename='img/comunidad.webp') }}" alt="Estudiantes compartiendo una comida durante la clase" width="1000" height="750">
       </div>
       <div class="ph-dots"></div>
-      <span class="ph-badge"><img src="{{ url_for('static', filename='logo.png') }}" alt="" width="58" height="43"></span>
+      <span class="ph-badge"><img src="{{ url_for('static', filename='logo.webp') }}" alt="" width="58" height="43"></span>
       <figcaption class="ph-chip chip-a"><b>Niños, jóvenes y adultos</b><small>Del nivel básico al avanzado</small></figcaption>
       <span class="ph-chip chip-b"><b>Desde 2020</b><small>Trenton, NJ</small></span>
     </figure>
   </div>
-  <ul class="facts"><li><b data-count="20">20</b>preguntas de diagnóstico</li><li><b data-count="10">10</b>minutos de examen</li><li><b>A1–C1</b>todos los niveles</li><li><b data-count="100" data-suffix="%">100%</b>clases presenciales</li></ul>
+  <ul class="facts"><li><b data-count="20">20</b>preguntas de diagnóstico</li><li><b data-count="10">10</b>minutos de examen</li><li><b data-count="5">5</b>niveles de inglés</li><li><b data-count="100" data-suffix="%">100%</b>clases presenciales</li></ul>
 </section>
 
 <div class="marquee" aria-hidden="true">
@@ -89,12 +96,12 @@
 
 <section class="sec light" id="niveles">
   <div class="wrap">
-    <h2>La escala que usa el mundo</h2>
-    <p class="lead-in">El MCER es el estándar de Cambridge, IELTS y la mayoría de universidades. Así se ve cada peldaño.</p>
+    <h2>Tus niveles en Columbus</h2>
+    <p class="lead-in">Cada nivel equivale a un peldaño del MCER, el estándar de Cambridge, IELTS y la mayoría de universidades.</p>
     <ol class="ladder reveal">
       {% for lv, txt in level_desc %}
       {% set parts = txt.split(': ', 1) %}
-      <li style="--i:{{ loop.index0 }}"><b>{{ lv }}</b><h3>{{ parts[0] }}</h3><p>{{ parts[1] }}</p></li>
+      <li style="--i:{{ loop.index0 }}"><span class="cefr">MCER {{ level_cefr[lv] }}</span><b>{{ lv }}</b><h3>{{ parts[0] }}</h3><p>{{ parts[1] }}</p></li>
       {% endfor %}
     </ol>
   </div>
@@ -148,10 +155,10 @@
 
 <section class="sec dark" id="profe">
   <div class="wrap about">
-    <div class="avatar"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo de {{ site.brand }}"></div>
+    <div class="avatar"><img src="{{ url_for('static', filename='logo.webp') }}" alt="Logo de {{ site.brand }}"></div>
     <div>
       <h2>Conoce {{ site.brand }}</h2>
-      <p>Un centro de idiomas enfocado en que hables inglés con seguridad. Aquí puedes contar la trayectoria del equipo, certificaciones (por ejemplo TKT, CELTA o IELTS), años de experiencia y la metodología.</p>
+      <p>Somos un centro de idiomas en {{ site.city }}, {{ site.region }}, enfocado en que hables inglés con seguridad. Trabajamos en grupos pequeños, con atención real y un plan que parte de tu nivel.</p>
       <p>Las clases combinan conversación, gramática aplicada y seguimiento del progreso de cada estudiante, siempre en persona.</p>
       <a class="btn" href="https://wa.me/{{ site.whatsapp }}">Escríbenos por WhatsApp</a>
     </div>
@@ -164,7 +171,7 @@
     <details><summary>¿Las clases son presenciales?</summary><p>Sí, todas las clases son presenciales en {{ site.brand }}. El examen de nivel sí lo haces en línea, desde donde estés.</p></details>
     <details><summary>¿El examen de nivel tiene costo?</summary><p>No. Es gratis y no necesitas crear una cuenta, solo tu nombre y correo.</p></details>
     <details><summary>¿Es un certificado oficial?</summary><p>No. Es una evaluación orientativa para ubicarte y planear tus clases. Para un certificado oficial se presentan exámenes como Cambridge, IELTS o TOEFL.</p></details>
-    <details><summary>¿Qué pasa si no sé nada de inglés?</summary><p>Perfecto, puedes hacer el examen igual. Si quedas en Pre-A1, empezamos desde cero.</p></details>
+    <details><summary>¿Qué pasa si no sé nada de inglés?</summary><p>Perfecto, puedes hacer el examen igual. Si quedas en {{ start_level }}, empezamos desde cero.</p></details>
     <details><summary>¿Cómo reservo mi primera clase?</summary><p>Déjanos tus datos en el formulario de más abajo o escríbenos por WhatsApp, y te confirmamos horarios disponibles.</p></details>
   </div>
 </section>
@@ -183,9 +190,9 @@
       </dl>
       {% if site.map_embed %}<iframe class="map" src="{{ site.map_embed }}" loading="lazy" title="Ubicación de la sede"></iframe>{% endif %}
     </div>
-    <form method="post" action="{{ url_for('book') }}" class="glass-form">
+    <form method="post" action="{{ url_for('book') }}" class="glass-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <label>Nombre<input name="name" required autocomplete="name"></label>
-      <label>WhatsApp<input name="phone" type="tel" required autocomplete="tel" placeholder="Ej: 300 000 0000"></label>
+      <label>WhatsApp<input name="phone" type="tel" required autocomplete="tel" placeholder="Ej: 609 000 0000"></label>
       <label>Horario preferido
         <select name="schedule"><option>Mañana</option><option>Tarde</option><option>Noche</option><option>Fin de semana</option></select>
       </label>

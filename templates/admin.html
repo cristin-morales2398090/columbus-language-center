@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Panel de administración · {{ site.brand }}{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
 <section class="wide">
   <div class="admin-head"><h1>Panel de administración</h1><a href="{{ url_for('admin_logout') }}">Cerrar sesión</a></div>
+  <p class="note">Respaldo: <a href="{{ url_for('export_results') }}">descargar resultados (CSV)</a> · <a href="{{ url_for('export_leads') }}">descargar solicitudes (CSV)</a></p>
   <h2 class="admin-sub" style="margin-top:1.5rem">Resultados de estudiantes</h2>
   <div class="chips">
     <a class="chip {{ 'on' if not sel }}" href="{{ url_for('admin') }}">Todos</a>
-    {% for l in ['Pre-A1'] + levels %}
+    {% for l in [start_level] + levels %}
     <a class="chip {{ 'on' if sel == l }}" href="{{ url_for('admin', nivel=l) }}">{{ l }} · {{ counts.get(l, 0) }}</a>
     {% endfor %}
   </div>
@@ -19,7 +21,7 @@
       <td>{{ r.created_at }}</td><td>{{ r.name }}</td>
       <td>{{ r.email }}{% if r.phone %}<br>{{ r.phone }}{% endif %}</td>
       <td><span class="tag">{{ r.level }}</span></td><td>{{ r.score }}/{{ r.total }}</td>
-      <td><form method="post" action="{{ url_for('admin_delete', rid=r.id) }}" onsubmit="return confirm('¿Borrar este resultado?')"><button class="link-danger">Borrar</button></form></td>
+      <td><form method="post" action="{{ url_for('admin_delete', rid=r.id) }}" onsubmit="return confirm('¿Borrar este resultado?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="link-danger">Borrar</button></form></td>
     </tr>
     {% endfor %}
     </tbody>
@@ -35,7 +37,7 @@
     <tr><td>{{ l.created_at }}</td><td>{{ l.name }}</td>
     <td><a href="https://wa.me/{{ l.phone | replace('+','') | replace(' ','') }}">{{ l.phone }}</a></td>
     <td>{{ l.schedule }}</td><td>{{ l.message }}</td>
-    <td><form method="post" action="{{ url_for('admin_delete_lead', lid=l.id) }}" onsubmit="return confirm('¿Borrar esta solicitud?')"><button class="link-danger">Borrar</button></form></td></tr>
+    <td><form method="post" action="{{ url_for('admin_delete_lead', lid=l.id) }}" onsubmit="return confirm('¿Borrar esta solicitud?')"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="link-danger">Borrar</button></form></td></tr>
     {% endfor %}
     </tbody>
   </table></div>

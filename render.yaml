@@ -2,9 +2,14 @@ services:
   - type: web
     name: columbus-language-center
     runtime: python
-    plan: free            # cámbialo a "starter" si agregas disco persistente (ver README)
+    plan: free            # cámbialo a "starter" para usar disco persistente (ver abajo)
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
+    # Para NO perder solicitudes y resultados entre reinicios (requiere plan de pago):
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.3
@@ -12,3 +17,18 @@ services:
         generateValue: true
       - key: ADMIN_PASSWORD
         sync: false       # Render te pedirá escribirla al crear el servicio
+      # - key: DATABASE_PATH
+      #   value: /var/data/academy.db   # activar junto con el disco
+      - key: CONTACT_EMAIL
+        sync: false       # correo público del negocio (opcional; si queda vacío no se muestra)
+      # Avisos por correo cuando llega una solicitud o un examen (opcionales):
+      - key: NOTIFY_EMAIL
+        sync: false
+      - key: SMTP_HOST
+        sync: false       # ej. smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false       # en Gmail: "contraseña de aplicación"
