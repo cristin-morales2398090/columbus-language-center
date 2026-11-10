@@ -872,3 +872,13 @@ img, svg, iframe, video { max-width:100%; }
 
 /* Ajustes para celular: etiquetas del hero fuera de la foto; carrusel sin sombra recortada */
 @media(max-width:760px){.ph-chip{display:none}.bento figure{box-shadow:none}}
+
+/* Celular: hero más limpio (sin doble marco, puntos separados de las estadísticas, WhatsApp redondo y pequeño) */
+@media(max-width:760px){
+ .ph-slides{box-shadow:0 18px 40px rgba(0,0,0,.4)}
+ .hero-photo{margin-bottom:2.6rem}
+ .ph-dots{bottom:-30px}
+ .ph-badge{width:66px;height:66px;left:8px;top:-16px}.ph-badge img{width:46px}
+ .fab{width:3.3rem;height:3.3rem;min-height:0;padding:0;border-radius:50%;justify-content:center}
+ .fab-label{display:none}
+}
